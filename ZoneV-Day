@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Zone V-Day</title>
+  <style>
+    :root {
+      --bg: #fff5f7;
+      --primary: #e63946;
+      --text: #1f2937;
+      --card: #ffffff;
+      --shadow: rgba(0,0,0,.12);
+    }
+
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; }
+    body {
+      display: grid;
+      place-items: center;
+      background: radial-gradient(1200px 600px at 70% -10%, #ffe3e8 0%, var(--bg) 40%, #fff 100%);
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text);
+    }
+
+    #popup {
+      background: var(--card);
+      width: min(92vw, 560px);
+      padding: 1.25rem 1.5rem 1.75rem;
+      border-radius: 14px;
+      box-shadow: 0 12px 30px var(--shadow);
+      border: 1px solid #f5c2c7;
+      text-align: center;
+      position: relative;
+      overflow: visible;
+    }
+
+    #popup h1 {
+      margin: 0 0 .5rem;
+      font-size: clamp(1.25rem, 1rem + 1.2vw, 1.75rem);
+    }
+
+    #popup p {
+      margin: 0 0 1rem;
+      font-size: 1.05rem;
+    }
+
+    .btns {
+      display: inline-flex;
+      gap: .75rem;
+      margin-top: .25rem;
+      position: relative;
+      min-height: 40px;
+    }
+
+    button {
+      border: none;
+      padding: .6rem 1.1rem;
+      border-radius: 999px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform .08s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
+      box-shadow: 0 6px 16px var(--shadow);
+    }
+
+    #yes {
+      background: var(--primary);
+      color: #fff;
+    }
+    #yes:hover { transform: translateY(-1px) scale(1.02); }
+
+    #no {
+      background: #f1f5f9;
+      color: #111827;
+      position: absolute; /* allows left/top to work when it moves */
+    }
+
+    footer {
+      position: fixed;
+      bottom: .75rem;
+      left: 0; right: 0;
+      text-align: center;
+      font-size: .85rem;
+      color: #6b7280;
+    }
+  </style>
+</head>
+<body>
+  <div id="popup" role="dialog" aria-labelledby="title" aria-describedby="prompt">
+    <h1 id="title">Hey Juan 👋</h1>
+    <p id="prompt">Will you be my Valentine?</p>
+
+    <div class="btns">
+      <button id="yes" onclick="yes()">Yes</button>
+      <button id="no" onmouseover="moveNo()">No</button>
+    </div>
+  </div>
+
+  <footer>Zone V‑Day • GitHub Pages demo</footer>
+
+  <script>
+    function moveNo() {
+      const noBtn = document.getElementById('no');
+
+      // Make sure the button moves using absolute positioning
+      noBtn.style.position = 'absolute';
+
+      // Keep the button fully visible by subtracting its own size
+      const maxLeft = Math.max(0, window.innerWidth  - noBtn.offsetWidth  - 24);
+      const maxTop  = Math.max(0, window.innerHeight - noBtn.offsetHeight - 24);
+
+      const left = Math.random() * maxLeft;
+      const top  = Math.random() * maxTop;
+
+      noBtn.style.left = `${left}px`;
+      noBtn.style.top  = `${top}px`;
+    }
+
+    function yes() {
+      alert('Yay!');
+    }
+  </script>
+</body>
+</html>
+``
